@@ -6,13 +6,15 @@ The visualization includes:
   - Scale data plot
   - Playback controls
 
-![image info](recording_screenshot.png)
+![Pouring playback demo](readme_assets/pouring_raw_data_demo.gif)
 
 # Installation
 
-This project is managed using **uv**.
+This project uses `uv` to install and run.
 
 ```bash
+git clone https://github.com/RothkopfLab/pouring_data_playback.git
+cd pouring_data_playback
 uv sync
 ```
 
@@ -22,8 +24,7 @@ uv sync
 
 ## Download the dataset
 
-TODO
-
+Link to full dataset will be added soon. An example recording is placed in the `example_data/` folder.
 ### Dataset Structure
 
 The recorded data is organized into two main directories:
@@ -48,8 +49,8 @@ Use the following command to replay a recording:
 
 ```bash
 uv run python main.py \
-  --dataset_path /path/to/pouring_dataset \
-  --mocap_only 1 \
+  --dataset_path example_data/ \
+  --mocap_only 0 \
   --rec_time_stamp 02062025092559
 ```
 
@@ -75,3 +76,18 @@ uv run python main.py \
   If not provided, the default scene configuration is used from object_models folder
 
 ---
+
+## Citation
+
+If you use the code or data presented here, please cite:
+
+```bibtex
+@article{midlagajni2026pouring,
+  title={How to pour a cup of coffee},
+  author={Midlagajni, Niteesh and Fleming, Roland W. and Rothkopf, Constantin A.},
+  journal={bioRxiv},
+  year={2026},
+  doi={10.64898/2026.08.26.746627},
+  url={https://www.biorxiv.org/content/10.64898/2026.08.26.746627v1}
+}
+```
