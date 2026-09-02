@@ -1,0 +1,26 @@
+{
+    "rec_id": "xop3fp5",
+    "rec_info": {
+        "EagleId": "e56be684-4649-5022-a842-efa4017c6fa7",
+        "Name": "Recording_1",
+        "Notes": ""
+    },
+    "rec_participant": "2blhguv",
+    "rec_project": "5ju4nbi",
+    "rec_state": "done",
+    "rec_segments": 1,
+    "rec_length": 42,
+    "rec_calibration": "a5ixvac",
+    "rec_created": "2025-06-02T09:25:58+0000",
+    "rec_et_samples": 5292,
+    "rec_et_valid_samples": 4704,
+    "ts_right_x": -32.5,
+    "ts_right_y": -27.0,
+    "ts_right_z": -19.0,
+    "ts_left_x": 32.5,
+    "ts_left_y": -27.0,
+    "ts_left_z": -19.0,
+    "ts_green_limit_radius": 10.0,
+    "ts_yellow_limit_radius": 12.5
+}
+

@@ -148,9 +148,9 @@ def _ray_pose(origin, direction, length):
 
 class BulletMocapWindow:
     def __init__(self, path_mocap, scene_xml,
-                 cameraDistance=1.4,
-                 cameraYaw=-103,
-                 cameraPitch=-25,
+                 cameraDistance=1.38,
+                 cameraYaw=-89.4,
+                 cameraPitch=-28.2,
                  cameraTargetPosition=[0.85, 0.47, 0.13]
                  ):
 
@@ -236,11 +236,6 @@ class BulletMocapWindow:
             rot = Rotation.from_euler('XYZ', rotation_deg, degrees=True).as_quat()
             p.resetBasePositionAndOrientation(bid, position, rot)
 
-        # cam = p.getDebugVisualizerCamera()
-        # print("distance:", cam[10])
-        # print("yaw:", cam[8])
-        # print("pitch:", cam[9])
-        # print("target:", cam[11])
 
         if not np.isnan(self.gaze_data[f]).any():
 
@@ -253,18 +248,6 @@ class BulletMocapWindow:
             ray_pos, ray_quat = _ray_pose(left_pos, left_dir, self.ray_length)
             p.resetBasePositionAndOrientation(self.left_ray_id, ray_pos, ray_quat)
 
-            # #for variable length ray.. ends at where it hits the objects.. flickers and slow
-            # left_ray_to = left_pos + self.ray_length * left_dir
-            # _, _, hit_fraction_l, _, _ = p.rayTest(left_pos, left_ray_to)[0]
-            # left_length = self.ray_length * hit_fraction_l if hit_fraction_l < 1.0 else self.ray_length
-            # ray_pos, ray_quat = _ray_pose(left_pos, left_dir, left_length)
-            # if self.left_ray_id is not None:
-            #     p.removeBody(self.left_ray_id)
-            # self.left_ray_id  = _make_ray_cylinder(radius=self.ray_radius, length=left_length, rgba=[1.0, 0.0, 0.0, 0.8])
-            # p.resetBasePositionAndOrientation(self.left_ray_id, ray_pos, ray_quat)
-
-
-
             right_pos = self.gaze_data[f][11:14] / 1000.0
             right_dir = self.gaze_data[f][8:11]
             right_dir = right_dir / np.linalg.norm(right_dir)
@@ -272,16 +255,6 @@ class BulletMocapWindow:
 
             ray_pos, ray_quat = _ray_pose(right_pos, right_dir, self.ray_length)
             p.resetBasePositionAndOrientation(self.right_ray_id, ray_pos, ray_quat)
-
-
-            # right_ray_to = right_pos + self.ray_length * right_dir
-            # _, _, hit_fraction_r, _, _ = p.rayTest(right_pos.tolist(), right_ray_to.tolist())[0]
-            # right_length = self.ray_length * hit_fraction_r if hit_fraction_r < 1.0 else self.ray_length
-            # ray_pos, ray_quat = _ray_pose(right_pos, right_dir, right_length)
-            # if self.right_ray_id is not None:
-            #     p.removeBody(self.right_ray_id)
-            # self.right_ray_id = _make_ray_cylinder(radius=self.ray_radius, length=right_length, rgba=[1.0, 0.0, 0.0, 0.8])
-            # p.resetBasePositionAndOrientation(self.right_ray_id, ray_pos, ray_quat)
 
         else:
             p.resetBasePositionAndOrientation(self.left_ray_id,  [999, 999, 999], [0, 0, 0, 1])
