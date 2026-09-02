@@ -53,6 +53,7 @@ uv run python main.py \
   --mocap_only 0 \
   --rec_time_stamp 02062025092559
 ```
+Press `q` on the playback window to exit.
 
 ---
 
